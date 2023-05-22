@@ -1,4 +1,4 @@
-# renderless
+# renderless component tech talk
 
 Some examples of the renderless component pattern with Vue 3 and compositino api. Also includes composeable patterns for comparison. 
 

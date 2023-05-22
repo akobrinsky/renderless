@@ -3,7 +3,7 @@ import { ref } from "vue";
 
 export default {
   props: {
-    objects: {
+    items: {
       type: Array,
       default: () => [],
     },
@@ -13,8 +13,8 @@ export default {
     },
   },
   setup(props, { slots }) {
-    const sortToggle = ref(false);
-    const sortedOjects = ref(props.objects);
+    const sorted = ref(false);
+    const sortedItems = ref(props.items);
 
     const sortComparator = (a, b) => {
       return props.sortBy === "name"
@@ -23,25 +23,24 @@ export default {
     };
 
     const sortHandler = () => {
-      const objectsCopy = [...props.objects];
-      sortToggle.value = !sortToggle.value;
-      if (sortToggle.value) {
-        sortedOjects.value.reverse();
+      const itemsCopy = [...props.items];
+      sorted.value = !sorted.value;
+      if (sorted.value) {
+        sortedItems.value.reverse();
         return;
       }
 
-      sortedOjects.value = objectsCopy.sort(sortComparator);
+      sortedItems.value = itemsCopy.sort(sortComparator);
     };
 
     const resetHandler = () => {
-      sortToggle.value = false;
-      sortedOjects.value = props.objects;
+      sorted.value = false;
+      sortedItems.value = props.items;
     };
 
     return () =>
       slots.default({
-        objects: props.objects,
-        sortedOjects: sortedOjects.value,
+        sortedItems: sortedItems.value,
         sortHandler,
         resetHandler,
       });

@@ -36,7 +36,7 @@ function useTagsInput(props, emit) {
     e.preventDefault();
     const pasteInfo = e.clipboardData.getData("Text");
 
-    const pastedSplit = pasteInfo.split(/[\n,\s+]/);
+    const pastedSplit = pasteInfo.split(/[\n,\s]/);
     const pastedVals = [];
     pastedSplit.forEach((val) => {
       const newVal = val.trim();
